@@ -1,0 +1,29 @@
+
+<div>
+
+
+<#list result_tables as res>
+	
+	<table class="table table-sm table-bordered">
+ 		<caption>${res.name}</caption>
+		<tr>
+		<#list res.content?first as attr>
+  			<th>${attr}</th>
+  		</#list>
+ 		</tr>
+ 		<#list res.content as line>
+ 		<#if !line?is_first>
+			<tr>
+			<#list line as col>
+    			<td>${col}</td>
+   		 	</#list>
+  			</tr>
+  		</#if>
+  		</#list>
+	</table> 
+
+
+</#list>
+
+                
+</div>

@@ -1,0 +1,35 @@
+
+<form id="molg-form">
+
+	<div class="form-group">
+		<label for="molg-url">MOLGENIS URL</label>
+		<input class="form-control" type="text" id="molg-url" name="molg-url" 
+		    	required  <#if (molg_url)??> value="${molg_url}"</#if>/>
+	</div>
+	
+	<div class="form-group">
+		<label for="molg-user">User</label>
+		<input class="form-control" type="text" id="molg-user" name="molg-user" 
+		      <#if (molg_user)??> value="${molg_user}"</#if>/>
+	</div>
+	
+	<div class="form-group">
+		<label for="molg-pw">Password</label>
+		<input class="form-control" type="password" id="molg-pw" name="molg-pw" 
+		      <#if (molg_pw)??> value="${molg_pw}"</#if>/>
+	</div>
+	
+	<input type="hidden" value="${fhir_url}" id="fhir-url" name="fhir-url" />
+	<input type="hidden" value="${ques_id}" id="ques-id" name="ques-id" />
+	<#if !emx_id??>
+	<div class="form-check">
+  	<label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id="with-tags" name="with-tags">
+    	Generate Tags
+ 	 </label>
+</div>
+<#else>
+<input type="hidden" value="${emx_id}" id="id" name="id" />
+</#if>
+
+</form>

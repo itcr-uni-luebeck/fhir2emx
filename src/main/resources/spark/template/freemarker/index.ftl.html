@@ -1,0 +1,82 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <title>FHIR Questionnaire to EMX Converter</title>
+  </head>
+  <body onload="PR.prettyPrint()">
+
+<nav class="navbar navbar-custom">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="http://imi.uni-luebeck.de">
+            <img alt="IMI" style="max-width:170px; margin-top: -7px;" src="images/en_logo.png">
+          </a>
+          <h3 class="navbar-text">FHIR Questionnaire to EMX Converter</h3>
+        </div>
+        <a class="navbar-text" href="../fhir2emx/apiDoku.html">API</a>
+      </div>
+    </nav>
+
+<div class="container"> 
+
+<p>
+  
+ 	Transform Questionnaires into EMX Tables.
+
+</p>
+
+<#include "./form.ftl.html">
+
+<#if errors??>
+	<#include "./errorDisplay.ftl.html">
+</#if>
+
+<#if upload??>
+	<#include "./molg_form.ftl.html">
+	<button type="submit" class="btn btn-primary" formaction="../fhir2emx/molgenis-import" formmethod="post" form="molg-form">Upload to MOLGENIS</button>
+</#if>
+<#if emx_id??>
+    <form id="id-form">	
+		<input type="hidden" value="${emx_id}" id="id" name="id" />
+	</form>
+	<button type="submit" class="btn btn-primary" formaction="../fhir2emx/emx" formmethod="get" form="id-form">Download Tables</button>
+	
+</#if>
+
+
+<#if result_tables??>
+	<#include "./resultpretty.ftl.html">
+</#if>
+
+
+<#if questionnaire_raw?? && !no_ques??>
+<div class="container"> 
+<h3>Convert Questionnaire</h3>
+<div class="row">
+    <div class="col-sm-6">
+         <#include "./molg_form.ftl.html">
+	<button type="submit" class="btn btn-primary" formaction="../fhir2emx/gui-transform" formmethod="post" form="molg-form">Convert Questionnaire</button>
+    </div>
+    <div class="col-sm-6">
+        <#include "./noMolgConv.ftl.html">
+    </div>
+</div>
+</div>
+<p>
+	<#include "./showQues.ftl.html">
+
+</#if>
+<#if no_ques??>
+<div class="alert alert-danger">
+Error fetching Questionnaire
+</div>
+</#if>
+   
+     </div>
+  </body>
+</html>

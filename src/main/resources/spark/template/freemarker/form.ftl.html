@@ -1,0 +1,18 @@
+
+<form id="ques-form">
+
+	<div class="form-group">
+		<label for="fhir-url">FHIR Base URL</label>
+		<input class="form-control" type="text" id="fhir-url" name="fhir-url" 
+		    	required  <#if (fhir_url)??> value="${fhir_url}"</#if>/>
+	</div>
+	
+	<div class="form-group">
+		<label for="ques-id">Questionnaire ID</label>
+		<input class="form-control" type="text" id="ques-id" name="ques-id" 
+		    	required  <#if (ques_id)??> value="${ques_id}"</#if>/>
+	</div>
+	
+	<button type="submit" class="btn btn-primary" formaction="../fhir2emx/gui_ques" formmethod="get" form="ques-form">Fetch Questionnaire</button>
+
+</form>

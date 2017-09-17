@@ -1,0 +1,214 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <title>FHIR Questionnaire to EMX Converter</title>
+  </head>
+  <body onload="PR.prettyPrint()">
+
+<nav class="navbar navbar-custom">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="http://imi.uni-luebeck.de">
+            <img alt="IMI" style="max-width:170px; margin-top: -7px;" src="images/en_logo.png">
+          </a>
+          <h3 class="navbar-text">FHIR2EMX</h3>
+        </div>
+      </div>
+    </nav>
+
+<div class="container"> 
+
+<p>
+  
+API for FHIR2EMX
+
+</p>
+   <div class="panel panel-default">
+      <div class="panel-heading"> POST [baseURL]/api/convert  </div>
+      <div class="panel-body">
+      	<div class="panel panel-default">
+      	<div class="panel-heading"> Request </div>
+      	<div class="panel-body">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Content-Type: application/json</div>
+            <div class="panel-body">
+              <pre class="prettyprint lang-json">
+            <code>
+  {
+    "serverbase":"http://funke.imi.uni-luebeck.de/public/base/",
+    "questionnaireid":"55",
+    "generateTags":false,
+    "molgenisurl":"http://141.83.21.75:8080",
+    "molgenisuser":"fhir_converter",
+    "molgenispw":"pw"
+  }
+            </code>
+          </pre>
+          The last three field are optional. If one of them is not given, neither MOLGENIS namechecking nor upload will not be conducted.
+            </div>
+            </div>
+            </div>
+        </div>
+        	<div class="panel panel-default">
+      	<div class="panel-heading"> Response </div>
+      	<div class="panel-body">
+
+            <div class="panel panel-success">
+          <div class="panel-heading">Status Code: 200</div>
+          <div class="panel-body">
+           <pre  class="prettyprint lang-json">
+            <code>
+	{
+		"issues": [
+			{
+				"severity": "INFORMATION",
+				"message": "Valid EMX was generated without Issues"
+			},
+			{
+				"severity": "INFORMATION",
+				"location": "MOLGENIS",
+				"message": "Sucessfully posted EMX to MOLGENIS (Response had status 201)"
+			}
+		]
+	}
+              </code>
+             </pre>
+          </div>
+        </div>
+        
+        <div class="panel panel-success">
+          <div class="panel-heading">Status Code: 200</div>
+          <div class="panel-body">
+           <pre  class="prettyprint lang-json">
+            <code>
+    {
+        "issues":
+        [
+            {
+                "severity": "INFORMATION",
+                "message": "Valid EMX was generated but there were some Issues"
+            },
+            {
+                "severity": "WARNING",
+                "location": "A49",
+                "message": "Failed to add Code CDE: Resident of or Frequent Traveler to Zika Area because it is not a valid EMX identifier"
+            },
+            {
+                "severity": "WARNING",
+                "location": "A50",
+                "message": "Failed to add Code CDE: Recent Travel to Zika Area because it is not a valid EMX identifier"
+            },
+            {
+      			"severity": "INFORMATION",
+     			"location": "MOLGENIS",
+      			"message": "Sucessfully posted EMX to MOLGENIS (Response had status 201)"
+   			 }
+        ]
+    }
+              </code>
+             </pre>
+          </div>
+        </div>
+        
+           <div class="panel panel-danger">
+          <div class="panel-heading">Status code 400</div>
+          <div class="panel-body">
+            <pre  class="prettyprint lang-json">
+            <code>
+    {
+        "issues":
+        [
+            {
+                "severity": "FATAL",
+                "location": "body",
+                "message": "Does not contain required fields"
+            }
+        ]
+    }
+
+            </code>
+             </pre>
+          </div>
+          </div>
+          
+          <div class="panel panel-danger">
+          <div class="panel-heading">Status code 401</div>
+          <div class="panel-body">
+            <pre  class="prettyprint lang-json">
+            <code>
+    {
+        "issues":
+        [
+            {
+                "severity": "FATAL",
+                "location": "molgenisuser,molgenispw",
+                "message": "MOLGENIS Login failed"
+            }
+        ]
+    }
+            </code>
+             </pre>
+          </div>
+        </div>
+        
+        <div class="panel panel-danger">
+          <div class="panel-heading">Status code 404</div>
+          <div class="panel-body">
+            <pre  class="prettyprint lang-json">
+            <code>
+    {
+        "issues":
+        [
+            {
+                "severity": "FATAL",
+                "location": "serverbase,questionnaireid",
+                "message": "Questionnaire not found"
+            }
+        ]
+    }
+            </code>
+             </pre>
+          </div>
+        </div>
+        
+        <div class="panel panel-danger">
+          <div class="panel-heading">Status code 422</div>
+          <div class="panel-body">
+            Severe errors, no EMX could be generated.
+          </div>
+        </div>
+        
+         <div class="panel panel-danger">
+          <div class="panel-heading">Status code 502</div>
+          <div class="panel-body">
+            <pre  class="prettyprint lang-json">
+            <code>
+    {
+        "issues":
+        [
+            {
+                "severity": "FATAL",
+                "location": "molgenisurl",
+                "message": "MOLGENIS not responding"
+            }
+        ]
+    }
+            </code>
+             </pre>
+             This error may take a while to arrive because FHIR2EMX waits 10 seconds for MOLGENIS to respond.
+          </div>
+        </div>
+        
+          </div>
+        </div>
+    </div>
+     </div>
+    </div>
+
+  </body>
+</html>

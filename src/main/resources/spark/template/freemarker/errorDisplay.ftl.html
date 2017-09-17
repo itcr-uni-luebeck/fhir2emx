@@ -1,0 +1,26 @@
+
+<div>
+
+<#list errors as issue>
+	<#if issue.severity.name() == "WARNING" >
+		<div class="alert alert-warning alert-dismissable">
+	</#if>
+	<#if issue.severity.name() == "ERROR" >
+		<div class="alert alert-danger alert-dismissable">
+	</#if>
+	<#if issue.severity.name() == "INFORMATION" >
+		<div class="alert alert-info alert-dismissable">
+	</#if>
+	<#if issue.severity.name() == "FATAL" >
+		<div class="alert alert-danger">
+	</#if>
+	<#if issue.severity.name() == "NULL" >
+		<div class="alert alert-info alert-dismissable">
+	</#if>
+		${issue.message}<i>At location: ${issue.location} </i>
+ 
+ 	</div>
+ </#list>
+
+                
+</div>

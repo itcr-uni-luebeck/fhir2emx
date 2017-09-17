@@ -1,0 +1,21 @@
+
+<form id="conv-no-molg">
+	<p id="helptext" class="form-text">
+ 		<h4> No MOLGENIS name checking</h4>
+	</p>
+	
+	<input type="hidden" id="fhir-url" name="fhir-url" 
+				<#if (fhir_url)??> value="${fhir_url}"</#if> />
+	
+	<input  type="hidden" id="ques-id" name="ques-id" 
+		    	<#if (ques_id)??> value="${ques_id}"</#if>/>
+		    	
+<div class="form-check">
+  	<label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id="with-tags" name="with-tags">
+    	Generate Tags
+ 	 </label>
+</div>
+	<button type="submit" class="btn btn-primary" formaction="../fhir2emx/gui-transform-no-molg" formmethod="post" form="conv-no-molg">Convert Questionnaire</button>
+
+</form>
