@@ -81,6 +81,14 @@ project
                └───  WEB-INF
                       └───  web.xml
 ```
-## History
-1.0 First Version
-
+## Citation
+```
+@conference {1029,
+	title = {Entwicklung eines Tools zum Konvertieren von HL7 FHIR Questionnaires in das MOLGENIS EMX Format},
+	booktitle = {GMDS},
+	year = {2017},
+	doi = {10.3205/17gmds148},
+	url = {https://www.egms.de/static/en/meetings/gmds2017/17gmds148.shtml},
+	author = {Deppenwiese, Noemi and Ulrich, Hannes and Wrage, Jan-Hinrich and Kock-Schoppenhauer, Ann-Kristen and Ingenerf, Josef}
+}
+```
