@@ -10,6 +10,18 @@ HL7 FHIR (https://www.hl7.org/fhir/) is an emerging standard for exchanging heal
 
 MOLGENIS (http://molgenis.github.io/) is an open-source tool for managing scientific data. Is is available on github: https://github.com/molgenis/molgenis.
 
+## Citation
+```
+@conference {1029,
+	title = {Entwicklung eines Tools zum Konvertieren von HL7 FHIR Questionnaires in das MOLGENIS EMX Format},
+	booktitle = {GMDS},
+	year = {2017},
+	doi = {10.3205/17gmds148},
+	url = {https://www.egms.de/static/en/meetings/gmds2017/17gmds148.shtml},
+	author = {Deppenwiese, Noemi and Ulrich, Hannes and Wrage, Jan-Hinrich and Kock-Schoppenhauer, Ann-Kristen and Ingenerf, Josef}
+}
+```
+
 FHIR2EMX can be used to automatically transfer the information contained in FHIR Questionnaires, e.g. from clinical trials, to MOLGENIS. This tool only works with metadata (questions), not with data (answers, that would be FHIR QuestionnaireResponse). It will produce an empty (only column names) sheet for an entity that represents your questionnaire and corresponding entities, packages and attributes sheet. The attributes of the generated entity correspond to your questionnaires items.
 Because of EMX naming restrictions the use of FHIR URLs as identifiers is sadly not possible, and your new entity will be called something like A2345346. Its description in the entity table will contain the original FHIR URL (the value of the Questionnaire.url field).
 
@@ -80,15 +92,4 @@ project
        └───  webapp
                └───  WEB-INF
                       └───  web.xml
-```
-## Citation
-```
-@conference {1029,
-	title = {Entwicklung eines Tools zum Konvertieren von HL7 FHIR Questionnaires in das MOLGENIS EMX Format},
-	booktitle = {GMDS},
-	year = {2017},
-	doi = {10.3205/17gmds148},
-	url = {https://www.egms.de/static/en/meetings/gmds2017/17gmds148.shtml},
-	author = {Deppenwiese, Noemi and Ulrich, Hannes and Wrage, Jan-Hinrich and Kock-Schoppenhauer, Ann-Kristen and Ingenerf, Josef}
-}
 ```
