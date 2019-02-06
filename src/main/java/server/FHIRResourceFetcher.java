@@ -17,8 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ca.uhn.fhir.context.FhirContext;
-import ca.uhn.fhir.rest.client.IGenericClient;
-import ca.uhn.fhir.rest.client.interceptor.LoggingInterceptor;
+import ca.uhn.fhir.rest.client.api.IGenericClient;
 import converter.QuestionnaireConverter;
 
 public class FHIRResourceFetcher {
@@ -119,7 +118,6 @@ public class FHIRResourceFetcher {
 	
 	private ValueSet requestValueSetExpansion(ValueSet valueSet){
 		IGenericClient client = this.context.newRestfulGenericClient(baseURL);
-		client.registerInterceptor(new LoggingInterceptor(true));
 		 
 		// Invoke $expand on ValueSet
 		Parameters outParams = client
